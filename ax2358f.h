@@ -1,8 +1,6 @@
 #ifndef ax2358f_H_
 #define ax2358f_H_
-#include <IRremote.h>
-#include <IRremoteInt.h>
-#include <IRremoteTools.h>
+#include <IRremote.hpp>
 
 #include <Arduino.h>
 #include <Wire.h>

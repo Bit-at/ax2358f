@@ -18,12 +18,11 @@ byte serialLength = 0;
 
 //Encoder encMain(ENC_A, ENC_B);
 IRrecv irReceiver(IR);
-decode_results res;
 
 //The setup function is called once at startup of the sketch
 void setup() {
     Serial.begin(SERIAL_SPEED);
-    irReceiver.enableIRIn();
+    irReceiver.begin(IR, ENABLE_LED_FEEDBACK);
     Wire.begin();
 
     pinMode(LED_CLK, OUTPUT);
@@ -86,8 +85,8 @@ void loop() {
         encPosition = encNew;
     }
   #endif // End of comment by jithin
-    if (irReceiver.decode(&res)) {
-        handleInfrared(res.value);
+    if (irReceiver.decode()) {
+        handleInfrared(irReceiver.decodedIRData.decodedRawData);
         delay(30);
         irReceiver.resume();
     }
